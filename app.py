@@ -15,9 +15,19 @@ uploaded_files = st.file_uploader(
 )
 
 if st.button("Analyze"):
-    st.success(
-        f"{len(uploaded_files)} resume(s) uploaded successfully."
-    )
+    if not uploaded_files:
+        st.error("Please upload at least one resume.")
+    else:
+        st.success(
+            f"{len(uploaded_files)} resume(s) uploaded successfully."
+        )
 
-    st.write("Job Description:")
-    st.write(job_description)
+        st.write("Job Description:")
+        st.write(job_description)
+
+        st.subheader("Results")
+
+        for file in uploaded_files:
+            st.write("Candidate:", file.name)
+            st.write("Match Score: 85%")
+            st.write("---")
